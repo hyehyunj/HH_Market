@@ -18,8 +18,7 @@
 
     <ImageView
         android:id="@+id/iv_detail_seller"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+
         android:layout_margin="20dp"
         android:scaleType="center"
         android:src="@drawable/img_fan"
@@ -49,11 +48,14 @@
 
     <ImageView
         android:id="@+id/iv_detail_face"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_margin="20dp"
-        android:scaleType="center"
-        android:src="@drawable/img_fan"
+        android:background="@drawable/bg_eco_level"
+        android:clipToOutline="true"
+        android:padding="5dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_lv1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_detail_title" />
 
@@ -73,7 +75,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="@string/fan_location"
+        android:text="@string/eco_level"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="@+id/iv_detail_face"
         app:layout_constraintTop_toBottomOf="@+id/iv_detail_face" />
@@ -122,14 +124,14 @@
         app:layout_constraintStart_toEndOf="@+id/cv_detail_like" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="120dp"
+        android:layout_height="40dp"
         android:id="@+id/btn_detail_chat"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        style="@style/btn_default"
+        android:text="@string/btn"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/bg_btn"
-        android:text="chat"
-app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_detail_price" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_detail_price"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

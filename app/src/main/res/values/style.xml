@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <style name="btn_default" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/selector_btn_bg</item>
+        <item name="android:textColor">@drawable/selector_btn_text</item>
+        <item name="android:text">@string/btn</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+</resources>

@@ -3,7 +3,11 @@
 
 
 
-
+    <string name="eco_level">에코레벨</string>
+    <string name="btn">채팅하기</string>
+    <string name="fan_seller">대현동</string>
+    <string name="fan_price">1000</string>
+    <string name="fan_location">서울 서대문구 창천동</string>
 
 
 
