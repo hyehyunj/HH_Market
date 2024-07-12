@@ -1,7 +1,6 @@
 package com.android.hh_market
 
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.hh_market.databinding.ActivityMainPageBinding
@@ -9,27 +8,21 @@ import com.android.hh_market.databinding.ActivityMainPageBinding
 class MainPageActivity : AppCompatActivity() {
 
     private lateinit var _binding : ActivityMainPageBinding
-    private val dataList = mutableListOf<ProductInfo>()
+    private val productList = Product.getProductData()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val productList = Product.getProductData()
         _binding = ActivityMainPageBinding.inflate(layoutInflater)
-
         setContentView(_binding.root)
 
-setLayout()
-        marketAdapter()
+        getAdapter()
 
     }
-private fun setLayout() {
-    val ProductData = mutableListOf<ProductInfo>()
 
 
-}
-private fun marketAdapter() {
-    val adapter = Adapter()
+private fun getAdapter() {
+    val adapter = Adapter(productList)
     _binding.mainRecyclerView.adapter = adapter
     _binding.mainRecyclerView.layoutManager = LinearLayoutManager(this)
 }

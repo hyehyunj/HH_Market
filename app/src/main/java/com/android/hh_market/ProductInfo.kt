@@ -8,5 +8,5 @@ data class ProductInfo(
     val introduce: Int,
     val seller: Int,
     val price: Int,
-    val adress: Int
+    val location: Int
 )

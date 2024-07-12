@@ -5,17 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.hh_market.databinding.ItemRecyclerviewBinding
 
-class Adapter(val item : MutableList<ProductInfo>) : RecyclerView.Adapter<Adapter.Holder>() {
+class Adapter(private val item: MutableList<ProductInfo>) : RecyclerView.Adapter<Adapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Adapter.Holder {
-        val _binding =
+        val binding =
             ItemRecyclerviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return Holder(_binding)
+        return Holder(binding)
     }
 
     override fun onBindViewHolder(holder: Adapter.Holder, position: Int) {
         holder.image.setImageResource(item[position].image)
         holder.title.setText(item[position].title)
-        holder.adress.setText(item[position].adress)
+        holder.location.setText(item[position].location)
         holder.price.setText(item[position].price)
 //        holder.chat.setText(item[position].chat)
 //        holder.adress.setText(item[position].adress)
@@ -23,15 +23,15 @@ class Adapter(val item : MutableList<ProductInfo>) : RecyclerView.Adapter<Adapte
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return item.size
     }
 
-    inner class Holder(val _binding: ItemRecyclerviewBinding) :
-        RecyclerView.ViewHolder(_binding.root) {
-        val image = _binding.ivItemTitle
-        val title = _binding.tvItemTitle
-        val adress = _binding.tvItemAdress
-        val price = _binding.tvItemPrice
+    inner class Holder(private val binding: ItemRecyclerviewBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        val image = binding.ivItemTitle
+        val title = binding.tvItemTitle
+        val location = binding.tvItemLocation
+        val price = binding.tvItemPrice
 //        val chat = _binding.tvItemChat
 //        val like = _binding.tvItemLike
     }
