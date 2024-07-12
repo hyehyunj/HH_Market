@@ -6,20 +6,22 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.android.hh_market.databinding.ActivityDetailPageBinding
+import com.android.hh_market.databinding.ActivityMainPageBinding
 
 class DetailPageActivity : AppCompatActivity() {
+
+    private lateinit var _binding : ActivityDetailPageBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_detail_page)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
+        _binding = ActivityDetailPageBinding.inflate(layoutInflater)
+        setContentView(_binding.root)
+    }
 
-        cbList.forEach {
+        fun cbLikeListener() {
+            _binding.btnDetailChat
+        cbLike.forEach {
             it.setOnCheckedChangeListener { _, ischecked ->
                 if (it.isChecked) {
                     tagsData += it.text.toString()
@@ -36,6 +38,6 @@ class DetailPageActivity : AppCompatActivity() {
                     for (i in cbList) if (!i.isChecked) i.isEnabled = true
                 }
             }
-        }
+
     }
 }
