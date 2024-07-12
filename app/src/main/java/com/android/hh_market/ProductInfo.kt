@@ -1,8 +1,10 @@
 package com.android.hh_market
 
+import android.graphics.drawable.Drawable
+
 data class ProductInfo(
     val image: Int,
-    val title: String,
+    val title: Int,
     val introduce: Int,
     val seller: Int,
     val price: Int,
