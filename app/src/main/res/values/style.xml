@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--알림버튼 -->
+    <style name="btn_toolbar_notification" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/selector_notification</item>
+    </style>
 
 
+    <!-- 좋아요   -->
+    <style name="cv_detail_like">
+        <item name="android:background">@drawable/selector_like</item>
+        <item name="android:scaleType">center</item>
+    </style>
+
+    <!--채팅버튼-->
     <style name="btn_default" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:background">@drawable/selector_btn_bg</item>
         <item name="android:textColor">@drawable/selector_btn_text</item>

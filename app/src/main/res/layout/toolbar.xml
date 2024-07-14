@@ -29,7 +29,8 @@
         app:layout_constraintTop_toTopOf="@+id/iv_toolbar_location" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_detail_chat"
+        android:id="@+id/btn_toolbar_notification"
+        style="@style/btn_toolbar_notification"
         android:layout_width="30dp"
         android:layout_height="30dp"
 

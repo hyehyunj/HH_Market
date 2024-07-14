@@ -8,5 +8,8 @@ data class ProductInfo(
     val introduce: Int,
     val seller: Int,
     val price: Int,
-    val location: Int
+    val location: Int,
+    val level: Int,
+    val chat : Int,
+    var like : Int
 )

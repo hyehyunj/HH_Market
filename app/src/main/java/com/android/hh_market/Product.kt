@@ -14,7 +14,11 @@ object Product {
                 R.string.fan_introduce,
                 R.string.fan_seller,
                 R.string.fan_price,
-                R.string.fan_location
+                R.string.fan_location,
+                1,
+                25,
+                13
+
             ),
             ProductInfo(
                 R.drawable.img_kimchi_fridge,
@@ -22,7 +26,10 @@ object Product {
                 R.string.kimchi_fridge_introduce,
                 R.string.kimchi_fridge_seller,
                 R.string.kimchi_fridge_price,
-                R.string.kimchi_fridge_location
+                R.string.kimchi_fridge_location,
+                1,
+                28,
+                8
             ),
             ProductInfo(
                 R.drawable.img_chanel_wallet,
@@ -30,7 +37,10 @@ object Product {
                 R.string.chanel_wallet_introduce,
                 R.string.chanel_wallet_seller,
                 R.string.chanel_wallet_price,
-                R.string.chanel_wallet_location
+                R.string.chanel_wallet_location,
+                1,
+                5,
+                23
             ),
             ProductInfo(
                 R.drawable.img_safe,
@@ -38,7 +48,10 @@ object Product {
                 R.string.safe_introduce,
                 R.string.safe_seller,
                 R.string.safe_price,
-                R.string.safe_location
+                R.string.safe_location,
+                1,
+                17,
+                14
             ),
             ProductInfo(
                 R.drawable.img_smart_phone,
@@ -46,7 +59,10 @@ object Product {
                 R.string.smart_phone_introduce,
                 R.string.smart_phone_seller,
                 R.string.smart_phone_price,
-                R.string.smart_phone_location
+                R.string.smart_phone_location,
+                1,
+                9,
+                22
             ),
             ProductInfo(
                 R.drawable.img_prada_bag,
@@ -54,7 +70,10 @@ object Product {
                 R.string.prada_bag_introduce,
                 R.string.prada_bag_seller,
                 R.string.prada_bag_price,
-                R.string.prada_bag_location
+                R.string.prada_bag_location,
+                1,
+                16,
+                25
             ),
             ProductInfo(
                 R.drawable.img_tiket,
@@ -62,7 +81,10 @@ object Product {
                 R.string.tiket_introduce,
                 R.string.tiket_seller,
                 R.string.tiket_price,
-                R.string.tiket_location
+                R.string.tiket_location,
+                1,
+                54,
+                142
             ),
             ProductInfo(
                 R.drawable.img_chanel_bag,
@@ -70,7 +92,10 @@ object Product {
                 R.string.chanel_bag_introduce,
                 R.string.chanel_bag_seller,
                 R.string.chanel_bag_price,
-                R.string.chanel_bag_location
+                R.string.chanel_bag_location,
+                1,
+                7,
+                31
             ),
             ProductInfo(
                 R.drawable.img_spray,
@@ -78,7 +103,10 @@ object Product {
                 R.string.spray_introduce,
                 R.string.spray_seller,
                 R.string.spray_price,
-                R.string.spray_location
+                R.string.spray_location,
+                1,
+                28,
+                7
             ),
             ProductInfo(
                 R.drawable.img_celine_bag,
@@ -86,7 +114,10 @@ object Product {
                 R.string.celine_bag_introduce,
                 R.string.celine_bag_seller,
                 R.string.celine_bag_price,
-                R.string.celine_bag_location
+                R.string.celine_bag_location,
+                1,
+                6,
+                40
             )
 
 

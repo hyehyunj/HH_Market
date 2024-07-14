@@ -5,9 +5,9 @@
 
     <string name="eco_level">에코레벨</string>
     <string name="btn">채팅하기</string>
-    <string name="fan_seller">대현동</string>
-    <string name="fan_price">1000</string>
-    <string name="fan_location">서울 서대문구 창천동</string>
+<!--    <string name="fan_seller">대현동</string>-->
+<!--    <string name="fan_price">1000</string>-->
+<!--    <string name="fan_location">서울 서대문구 창천동</string>-->
 
 
 
@@ -45,8 +45,8 @@
 
     <string name="prada_bag_title">프라다 복조리백</string>
     <string name="prada_bag_introduce">까임 오염없고 상태 깨끗합니다\n정품여부모름</string>
-    <string name="prada_bag_seller">50000</string>
-    <string name="prada_bag_price">1000</string>
+    <string name="prada_bag_seller">미니멀하게</string>
+    <string name="prada_bag_price">50000</string>
     <string name="prada_bag_location">수원시 영통구 원천동</string>
 
 
