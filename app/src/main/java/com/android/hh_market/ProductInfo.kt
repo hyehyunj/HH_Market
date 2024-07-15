@@ -17,4 +17,8 @@ data class ProductInfo(
     val chat : Int,
     var like : Int,
 
-) : Parcelable
+) : Parcelable {
+    operator fun plusAssign(i: Int) {
+
+    }
+}
