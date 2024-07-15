@@ -6,6 +6,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
@@ -21,11 +22,9 @@ class MainPageActivity : AppCompatActivity() {
     private val productList = Product.getProductData()
     private val adapter = Adapter(productList)
 
-
     companion object {
         private const val TAG = "MainPageActivity"
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +39,19 @@ class MainPageActivity : AppCompatActivity() {
         }
 
         val intent = Intent(this, DetailPageActivity::class.java)
-        val like = intent.getIntExtra("like", 0)
-        productList[0].like++
+
+        adapter.itemClick = object : Adapter.ItemClick {
+            override fun onClick(view: View, position: Int) {
+                val data = productList[position]
+                Log.d(TAG, "d ${data.title}")
+                intent.putExtra("DATA",productList[position])
+////                intent.putExtra("POSITION",position)
+//                startActivity(intent)
+
+            }
+        }
+//        val like = intent.getIntExtra("like", 0)
+//        productList[0].like++
 //        getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
 //                result: ActivityResult ->
 //            if (result.resultCode == RESULT_OK) {
@@ -51,16 +61,9 @@ class MainPageActivity : AppCompatActivity() {
 //        }
 
 
-        adapter.itemClick = object : Adapter.ItemClick {
-            override fun onClick(view: View, position: Int) {
-//               intent.putExtra("POSITION", position)
-//                startActivity(intent)
+
 
 //                getResult.launch(intent)
-
-            }
-        }
-
 
     }
 
@@ -71,7 +74,7 @@ class MainPageActivity : AppCompatActivity() {
     }
 
 
-    //알림버튼
+    //알림버튼 - 작동안됨
     private fun btnNotificationListener() {
         val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         val builder: NotificationCompat.Builder

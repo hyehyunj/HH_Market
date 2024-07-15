@@ -7,11 +7,11 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class ProductInfo(
     val image: Int,
-    val title: Int,
-    val introduce: Int,
-    val seller: Int,
+    val title: String,
+    val introduce: String,
+    val seller: String,
     val price: Int,
-    val location: Int,
+    val location: String,
     val level: Int,
     val chat : Int,
     var like : Int

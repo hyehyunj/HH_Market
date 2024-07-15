@@ -3,6 +3,7 @@ package com.android.hh_market
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -23,7 +24,8 @@ class DetailPageActivity : AppCompatActivity() {
 
     private lateinit var _binding : ActivityDetailPageBinding
     private val productList = Product.getProductData()
-    var position = 0
+    private var position = 0
+    val data : Parcelable? = intent.getParcelableExtra("DATA")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,9 +35,10 @@ class DetailPageActivity : AppCompatActivity() {
 
 
 
+
 //        position = intent.getIntExtra("POSITION",0)
-//        cbLikeListener()
-//        btnBackListener()
+//val data = intent.getParcelableExtra<ProductInfo>("DATA")
+//        Log.d(TAG, "d ${data?.title}")
 
 with(_binding) {
     ivDetailTitle.setImageResource(productList[position].image)
@@ -44,40 +47,28 @@ with(_binding) {
     tvDetailTitle.setText(productList[position].title)
     tvDetailIntroduce.setText(productList[position].introduce)
     }
+
+
+        btnBackListener()
 ////
 //        val intent = Intent(this, MainPageActivity::class.java)
-//        setResult(RESULT_OK,intent)
 //        finish()
 
 
 
     }
 
-//    fun setData(position :Int){
-//        setImageResource(productList[position].image)
-//
-//    }
-//    inner class Holder()  {
-//    val image = _binding.ivDetailTitle
-//    val title = _binding.ivDetailSeller
-//    val location = _binding.ivDetailSeller
-//    }
-
-//
-
-//뒤로가기버튼
+//뒤로가기버튼-like제작중
     private fun btnBackListener() {
         _binding.btnDetailBack.setOnClickListener {
-
-
-
-
-
-            val intent = Intent(this, MainPageActivity::class.java)
-            intent.getIntExtra("like",productList[position].like)
-            startActivity(intent)
+            finish()
+//val intent = Intent(this, MainPageActivity::class.java)
+//            intent.putExtra("LIKE",productList[position].like)
+//            startActivity(intent)
         }
     }
+
+    //like버튼-제작중
         private fun cbLikeListener() {
             _binding.cbDetailLike.setOnCheckedChangeListener { it, ischecked ->
                 if (it.isChecked)

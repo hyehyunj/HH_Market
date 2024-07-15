@@ -1,5 +1,6 @@
 package com.android.hh_market
 
+import android.icu.text.DecimalFormat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -30,11 +31,12 @@ class Adapter(private val item: MutableList<ProductInfo>) : RecyclerView.Adapter
         holder.itemView.setOnClickListener {
             itemClick?.onClick(it, position)
         }
+        val dec = DecimalFormat("#,###원")
 
         holder.image.setImageResource(item[position].image)
-        holder.title.setText(item[position].title)
-        holder.location.setText(item[position].location)
-        holder.price.setText(item[position].price.toString().format("%,d원"))
+        holder.title.text = item[position].title
+        holder.location.text = item[position].location
+        holder.price.text = dec.format(item[position].price)
         holder.chat.text = item[position].chat.toString()
         holder.like.text = item[position].like.toString()
 
