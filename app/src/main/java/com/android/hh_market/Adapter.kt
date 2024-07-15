@@ -34,7 +34,7 @@ class Adapter(private val item: MutableList<ProductInfo>) : RecyclerView.Adapter
         holder.image.setImageResource(item[position].image)
         holder.title.setText(item[position].title)
         holder.location.setText(item[position].location)
-        holder.price.setText(item[position].price)
+        holder.price.setText(item[position].price.toString().format("%,d원"))
         holder.chat.text = item[position].chat.toString()
         holder.like.text = item[position].like.toString()
 

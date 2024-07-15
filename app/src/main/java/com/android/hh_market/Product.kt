@@ -1,5 +1,8 @@
 package com.android.hh_market
 
+
+
+
 object Product {
     fun getProductData() = initProductData()
 

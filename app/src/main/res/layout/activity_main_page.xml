@@ -9,7 +9,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
+        layout="@layout/toolbar_main_page" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_recycler_view"

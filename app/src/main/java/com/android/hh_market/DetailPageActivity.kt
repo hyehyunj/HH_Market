@@ -1,9 +1,12 @@
 package com.android.hh_market
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -11,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.hh_market.databinding.ActivityDetailPageBinding
 import com.android.hh_market.databinding.ActivityMainPageBinding
 import com.android.hh_market.databinding.ItemRecyclerviewBinding
+import com.google.android.material.appbar.MaterialToolbar
 
 class DetailPageActivity : AppCompatActivity() {
 
@@ -19,14 +23,19 @@ class DetailPageActivity : AppCompatActivity() {
 
     private lateinit var _binding : ActivityDetailPageBinding
     private val productList = Product.getProductData()
-
+    var position = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         _binding = ActivityDetailPageBinding.inflate(layoutInflater)
         setContentView(_binding.root)
-        val position = intent.getIntExtra("data",0)
+
+
+
+//        position = intent.getIntExtra("POSITION",0)
+//        cbLikeListener()
+//        btnBackListener()
 
 with(_binding) {
     ivDetailTitle.setImageResource(productList[position].image)
@@ -34,8 +43,11 @@ with(_binding) {
     tvDetailLocation.setText(productList[position].location)
     tvDetailTitle.setText(productList[position].title)
     tvDetailIntroduce.setText(productList[position].introduce)
-
-}
+    }
+////
+//        val intent = Intent(this, MainPageActivity::class.java)
+//        setResult(RESULT_OK,intent)
+//        finish()
 
 
 
@@ -52,25 +64,26 @@ with(_binding) {
 //    }
 
 //
-//        fun cbLikeListener() {
-//            _binding.btnDetailChat
-//        cbLike.forEach {
-//            it.setOnCheckedChangeListener { _, ischecked ->
-//                if (it.isChecked) {
-//                    tagsData += it.text.toString()
-//                    if (tagsData.size == 3) {
-//                        Toast.makeText(
-//                            this,
-//                            getString(R.string.toast_signup_favorite_max3),
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                        for (i in cbList) if (!i.isChecked) i.isEnabled = false
-//                    }
-//                } else {
-//                    tagsData -= it.text.toString()
-//                    for (i in cbList) if (!i.isChecked) i.isEnabled = true
-//                }
-//            }
-//
-//    }
+
+//뒤로가기버튼
+    private fun btnBackListener() {
+        _binding.btnDetailBack.setOnClickListener {
+
+
+
+
+
+            val intent = Intent(this, MainPageActivity::class.java)
+            intent.getIntExtra("like",productList[position].like)
+            startActivity(intent)
+        }
+    }
+        private fun cbLikeListener() {
+            _binding.cbDetailLike.setOnCheckedChangeListener { it, ischecked ->
+                if (it.isChecked)
+                    productList[position].like++
+
+            }
+            }
+
 }
