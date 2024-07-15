@@ -6,7 +6,6 @@ import android.os.Parcelable
 object Product {
     fun getProductData() = initProductData()
 
-    //데이터 보호
     private fun initProductData(): MutableList<ProductInfo> {
 
         return mutableListOf(
@@ -18,10 +17,10 @@ object Product {
                 "대현동",
                 1000,
                 "서울 서대문구 창천동",
-                1,
+                "Lv.1",
+                R.drawable.ic_lv1,
                 25,
                 13
-
             ),
             ProductInfo(
                 R.drawable.img_kimchi_fridge,
@@ -30,7 +29,8 @@ object Product {
                 "안마담",
                 20000,
                 "인천 계양구 귤현동",
-                1,
+                "Lv.2",
+                R.drawable.ic_lv2,
                 28,
                 8
             ),
@@ -41,7 +41,8 @@ object Product {
                 "코코유",
                 10000,
                 "수성구 범어동",
-                1,
+                "Lv.3",
+                R.drawable.ic_lv3,
                 5,
                 23
             ),
@@ -52,7 +53,8 @@ object Product {
                 "Nicole",
                 10000,
                 "해운대구 우제2동",
-                1,
+                "Lv.4",
+                R.drawable.ic_lv4,
                 17,
                 14
             ),
@@ -62,8 +64,9 @@ object Product {
                 "갤럭시 Z플립3 그린 팝니다\n항시 케이스 씌워서 썻고 필름 한장챙겨드립니다\n화면에 살짝 스크래치난거 말고 크게 이상은없습니다!",
                 "절명",
                 150000,
-                "연제구 연산제8동",
-                1,
+                "연제구 연산제8동","Lv.5",
+
+                R.drawable.ic_lv5,
                 9,
                 22
             ),
@@ -74,7 +77,8 @@ object Product {
                 "미니멀하게",
                 50000,
                 "수원시 영통구 원천동",
-                1,
+                "Lv.1",
+                R.drawable.ic_lv1,
                 16,
                 25
             ),
@@ -85,7 +89,8 @@ object Product {
                 "굿리치",
                 150000,
                 "남구 옥동",
-                1,
+                "Lv.5",
+                        R.drawable.ic_lv5,
                 54,
                 142
             ),
@@ -96,7 +101,8 @@ object Product {
         "난쉽",
         180000,
         "동래구 온천제2동",
-                1,
+                "Lv.4",
+                R.drawable.ic_lv4,
                 7,
                 31
             ),
@@ -107,7 +113,8 @@ object Product {
                 "알뜰한",
                 30000,
                 "원주시 명륜2동",
-                1,
+                "Lv.3",
+                R.drawable.ic_lv3,
                 28,
                 7
             ),
@@ -118,7 +125,8 @@ object Product {
                 "똑태현",
                 190000,
                 "중구 동화동",
-                1,
+                "Lv.2",
+                R.drawable.ic_lv2,
                 6,
                 40
             )

@@ -6,13 +6,12 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.hh_market.databinding.ActivityMainPageBinding
 
@@ -31,8 +30,11 @@ class MainPageActivity : AppCompatActivity() {
         _binding = ActivityMainPageBinding.inflate(layoutInflater)
         setContentView(_binding.root)
 
+
+
         getAdapter()
         btnBackListener()
+
 
         _binding.toolbar.btnToolbarNotification.setOnClickListener {
             btnNotificationListener()
@@ -42,11 +44,8 @@ class MainPageActivity : AppCompatActivity() {
 
         adapter.itemClick = object : Adapter.ItemClick {
             override fun onClick(view: View, position: Int) {
-                val data = productList[position]
-                Log.d(TAG, "d ${data.title}")
-                intent.putExtra("DATA",productList[position])
-////                intent.putExtra("POSITION",position)
-//                startActivity(intent)
+                intent.putExtra("DATA", productList[position])
+                startActivity(intent)
 
             }
         }
@@ -61,8 +60,6 @@ class MainPageActivity : AppCompatActivity() {
 //        }
 
 
-
-
 //                getResult.launch(intent)
 
     }
@@ -71,6 +68,8 @@ class MainPageActivity : AppCompatActivity() {
     private fun getAdapter() {
         _binding.mainRecyclerView.adapter = adapter
         _binding.mainRecyclerView.layoutManager = LinearLayoutManager(this)
+        val decoration = DividerItemDecoration(this,LinearLayoutManager.VERTICAL)
+        _binding.mainRecyclerView.addItemDecoration(decoration)
     }
 
 

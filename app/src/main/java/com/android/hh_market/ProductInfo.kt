@@ -12,7 +12,9 @@ data class ProductInfo(
     val seller: String,
     val price: Int,
     val location: String,
-    val level: Int,
+    val level: String,
+    val levelImage : Int,
     val chat : Int,
-    var like : Int
+    var like : Int,
+
 ) : Parcelable

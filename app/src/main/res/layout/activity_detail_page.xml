@@ -162,7 +162,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:text="@string/fan_seller"
-        android:textSize="14sp"
+        android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/cb_detail_like"
         app:layout_constraintStart_toEndOf="@+id/cb_detail_like"
         app:layout_constraintTop_toTopOf="@+id/cb_detail_like" />

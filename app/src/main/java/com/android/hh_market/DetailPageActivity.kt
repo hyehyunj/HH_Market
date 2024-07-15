@@ -2,6 +2,7 @@ package com.android.hh_market
 
 import android.app.Activity
 import android.content.Intent
+import android.icu.text.DecimalFormat
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
@@ -23,9 +24,6 @@ class DetailPageActivity : AppCompatActivity() {
         private const val TAG = "DetailPageActivity" }
 
     private lateinit var _binding : ActivityDetailPageBinding
-    private val productList = Product.getProductData()
-    private var position = 0
-    val data : Parcelable? = intent.getParcelableExtra("DATA")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,19 +31,18 @@ class DetailPageActivity : AppCompatActivity() {
         _binding = ActivityDetailPageBinding.inflate(layoutInflater)
         setContentView(_binding.root)
 
-
-
-
-//        position = intent.getIntExtra("POSITION",0)
-//val data = intent.getParcelableExtra<ProductInfo>("DATA")
-//        Log.d(TAG, "d ${data?.title}")
+        val productData = intent.getParcelableExtra<ProductInfo>("DATA")
+        val dec = DecimalFormat("#,###원")
 
 with(_binding) {
-    ivDetailTitle.setImageResource(productList[position].image)
-    tvDetailSeller.setText(productList[position].seller)
-    tvDetailLocation.setText(productList[position].location)
-    tvDetailTitle.setText(productList[position].title)
-    tvDetailIntroduce.setText(productList[position].introduce)
+    ivDetailTitle.setImageResource(productData!!.image)
+    tvDetailSeller.text = productData.seller
+    tvDetailLocation.text = productData.location
+    tvDetailTitle.text = productData.title
+    tvDetailIntroduce.text = productData.introduce
+    tvDetailPrice.text = dec.format(productData.price)
+    ivDetailLevel.setImageResource(productData.levelImage)
+    tvDetailLevel.text = productData.level
     }
 
 
@@ -69,12 +66,11 @@ with(_binding) {
     }
 
     //like버튼-제작중
-        private fun cbLikeListener() {
-            _binding.cbDetailLike.setOnCheckedChangeListener { it, ischecked ->
-                if (it.isChecked)
-                    productList[position].like++
-
-            }
-            }
+//        private fun cbLikeListener() {
+//            _binding.cbDetailLike.setOnCheckedChangeListener { it, ischecked ->
+//                if (it.isChecked)
+//
+//                        }
+//            }
 
 }
