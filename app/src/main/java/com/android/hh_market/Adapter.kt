@@ -8,16 +8,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.hh_market.databinding.ItemRecyclerviewBinding
 
-class Adapter(private val item: MutableList<ProductInfo>) : RecyclerView.Adapter<Adapter.Holder>() {
+class Adapter(
+    private val item: MutableList<ProductInfo>,
+    private val itemClickListener: (item: ProductInfo, position: Int) -> Unit,
+    private val itemLongClickListener: (item: ProductInfo, position: Int) -> Boolean
+) : RecyclerView.Adapter<Adapter.Holder>() {
     companion object {
-        private const val TAG = "Adapter" }
-
-    interface ItemClick {
-        fun onClick(view : View, position : Int)
-
+        private const val TAG = "Adapter"
     }
-
-    var itemClick : ItemClick? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Adapter.Holder {
         val binding =
@@ -26,20 +24,7 @@ class Adapter(private val item: MutableList<ProductInfo>) : RecyclerView.Adapter
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-
-
-        holder.itemView.setOnClickListener {
-            itemClick?.onClick(it, position)
-        }
-        val dec = DecimalFormat("#,###원")
-
-        holder.image.setImageResource(item[position].image)
-        holder.title.text = item[position].title
-        holder.location.text = item[position].location
-        holder.price.text = dec.format(item[position].price)
-        holder.chat.text = item[position].chat.toString()
-        holder.like.text = item[position].like.toString()
-
+        holder.bind(item[position])
     }
 
     override fun getItemCount(): Int {
@@ -48,13 +33,27 @@ class Adapter(private val item: MutableList<ProductInfo>) : RecyclerView.Adapter
 
     inner class Holder(private val binding: ItemRecyclerviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        val image = binding.ivItemTitle
-        val title = binding.tvItemTitle
-        val location = binding.tvItemLocation
-        val price = binding.tvItemPrice
-        val chat = binding.tvItemChat
-        val like = binding.tvItemLike
+
+        val dec = DecimalFormat("#,###원")
+        fun bind(item: ProductInfo) {
+            binding.apply {
+                ivItemTitle.setImageResource(item.image)
+                tvItemTitle.text = item.title
+                tvItemLocation.text = item.location
+                tvItemPrice.text = dec.format(item.price)
+                tvItemChat.text = item.chat.toString()
+                tvItemLike.text = item.like.toString()
+                itemRecyclerview.setOnClickListener {
+                    itemClickListener(item, adapterPosition)
+                }
+                itemRecyclerview.setOnLongClickListener {
+                    itemLongClickListener(item, adapterPosition)
+                }
+
+
+            }
+        }
+
+
     }
-
-
 }

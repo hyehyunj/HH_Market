@@ -5,7 +5,9 @@ import android.os.Parcelable
 
 object Product {
     fun getProductData() = initProductData()
-
+    fun findProductData(seller : String): ProductInfo? {
+        return getProductData().find { it.seller == seller }
+    }
     private fun initProductData(): MutableList<ProductInfo> {
 
         return mutableListOf(
@@ -20,7 +22,8 @@ object Product {
                 "Lv.1",
                 R.drawable.ic_lv1,
                 25,
-                13
+                13,
+                false
             ),
             ProductInfo(
                 R.drawable.img_kimchi_fridge,
@@ -32,7 +35,8 @@ object Product {
                 "Lv.2",
                 R.drawable.ic_lv2,
                 28,
-                8
+                8,
+                false
             ),
             ProductInfo(
                 R.drawable.img_chanel_wallet,
@@ -44,7 +48,8 @@ object Product {
                 "Lv.3",
                 R.drawable.ic_lv3,
                 5,
-                23
+                23,
+                false
             ),
             ProductInfo(
                 R.drawable.img_safe,
@@ -56,7 +61,8 @@ object Product {
                 "Lv.4",
                 R.drawable.ic_lv4,
                 17,
-                14
+                14,
+                false
             ),
             ProductInfo(
                 R.drawable.img_smart_phone,
@@ -68,7 +74,8 @@ object Product {
 
                 R.drawable.ic_lv5,
                 9,
-                22
+                22,
+                false
             ),
             ProductInfo(
                 R.drawable.img_prada_bag,
@@ -80,7 +87,8 @@ object Product {
                 "Lv.1",
                 R.drawable.ic_lv1,
                 16,
-                25
+                25,
+                false
             ),
             ProductInfo(
                 R.drawable.img_tiket,
@@ -92,7 +100,8 @@ object Product {
                 "Lv.5",
                         R.drawable.ic_lv5,
                 54,
-                142
+                142,
+                false
             ),
             ProductInfo(
                 R.drawable.img_chanel_bag,
@@ -104,7 +113,8 @@ object Product {
                 "Lv.4",
                 R.drawable.ic_lv4,
                 7,
-                31
+                31,
+                false
             ),
             ProductInfo(
                 R.drawable.img_spray,
@@ -116,7 +126,8 @@ object Product {
                 "Lv.3",
                 R.drawable.ic_lv3,
                 28,
-                7
+                7,
+                false
             ),
             ProductInfo(
                 R.drawable.img_celine_bag,
@@ -128,7 +139,8 @@ object Product {
                 "Lv.2",
                 R.drawable.ic_lv2,
                 6,
-                40
+                40,
+                false
             )
 
 

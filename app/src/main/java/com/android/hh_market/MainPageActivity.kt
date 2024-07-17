@@ -10,6 +10,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
@@ -18,10 +21,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.hh_market.databinding.ActivityMainPageBinding
 
 class MainPageActivity : AppCompatActivity() {
-
     private lateinit var _binding: ActivityMainPageBinding
+    private lateinit var adapter: Adapter
     private val productList = Product.getProductData()
-    private val adapter = Adapter(productList)
 
     companion object {
         private const val TAG = "MainPageActivity"
@@ -31,6 +33,19 @@ class MainPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainPageBinding.inflate(layoutInflater)
         setContentView(_binding.root)
+
+
+        //클릭 이벤트 : 클릭 시 디테일페이지 호출, 롱클릭 시 삭제
+        val intent = Intent(this, DetailPageActivity::class.java)
+        adapter = Adapter(productList, itemClickListener = { item, position ->
+            intent.putExtra("DATA", productList[position])
+            startActivity(intent)
+        }, itemLongClickListener = { item, position ->
+            adapter.notifyItemRemoved(position)
+            productList.removeAt(position)
+            adapter.notifyItemRangeChanged(position, adapter.itemCount)
+            return@Adapter true
+        })
 
         //어댑터 호출
         getAdapter()
@@ -42,50 +57,20 @@ class MainPageActivity : AppCompatActivity() {
         _binding.toolbar.btnToolbarNotification.setOnClickListener {
             btnNotificationListener()
         }
-
-        //디테일페이지 호출
-        val intent = Intent(this, DetailPageActivity::class.java)
-        adapter.itemClick = object : Adapter.ItemClick {
-            override fun onClick(view: View, position: Int) {
-                intent.putExtra("POSITION", position)
-                intent.putExtra("DATA", productList[position])
-                startActivity(intent)
-
-            }
-        }
-
-        //like추가 호출
-        getLike()
-
-//        val like = intent.getIntExtra("like", 0)
-//        productList[0].like++
-//        getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-//                result: ActivityResult ->
-//            if (result.resultCode == RESULT_OK) {
-//                val cbLike = result.data?.getIntExtra("like",0) ?: 0
-//                productList[7].like + cbLike
-//             }
-//        }
-
-
-//                getResult.launch(intent)
-
     }
-    fun getLike() {
-        val likeResult = intent.getBooleanExtra("LIKE", false)
-        val positionResult = intent.getIntExtra("POSITION", 0)
-        if(likeResult) productList[positionResult].like += 1
-    }
+
+
     //어댑터 함수
     private fun getAdapter() {
         _binding.mainRecyclerView.adapter = adapter
-        _binding.mainRecyclerView.layoutManager = LinearLayoutManager(this)
-        val decoration = DividerItemDecoration(this,LinearLayoutManager.VERTICAL)
-        _binding.mainRecyclerView.addItemDecoration(decoration)
+        _binding.mainRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+        }
     }
 
 
-    //알림버튼 함수 - 작동안됨
+    //알림버튼 함수
     private fun btnNotificationListener() {
         val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         val builder: NotificationCompat.Builder
@@ -115,8 +100,7 @@ class MainPageActivity : AppCompatActivity() {
         manager.notify(1, builder.build())
     }
 
-
-    //뒤로가기 버튼 함수, 다이얼로그
+    //뒤로가기버튼 함수 : 다이얼로그
     private fun btnBackListener() {
         val btnBackListener = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {

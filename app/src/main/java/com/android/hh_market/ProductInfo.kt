@@ -16,6 +16,7 @@ data class ProductInfo(
     val levelImage : Int,
     val chat : Int,
     var like : Int,
+    var likeAdd : Boolean
 
 ) : Parcelable {
     operator fun plusAssign(i: Int) {
