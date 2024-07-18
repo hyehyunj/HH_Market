@@ -11,7 +11,6 @@ import com.google.android.material.snackbar.Snackbar
 class DetailPageActivity : AppCompatActivity() {
 
     private lateinit var _binding: ActivityDetailPageBinding
-    private var cbLikeResult = false
     private lateinit var productData: ProductInfo
 
     companion object {
@@ -31,15 +30,7 @@ class DetailPageActivity : AppCompatActivity() {
 
         //뒤로가기버튼
         _binding.btnDetailBack.setOnClickListener {
-            if (cbLikeResult) {
-                Log.d(TAG,"d 최종 하트 수 ${productData.like}")
-//                finish()
-                val intent = Intent(this, MainPageActivity::class.java)
-                startActivity(intent)
-            }
-//            finish()
-            val intent = Intent(this, MainPageActivity::class.java)
-            startActivity(intent)
+            finish()
         }
     }
 
@@ -70,20 +61,28 @@ class DetailPageActivity : AppCompatActivity() {
             ivDetailLevel.setImageResource(productData.levelImage)
             tvDetailLevel.text = productData.level
         }
+        when (productData.likeAdd) {
+            true -> _binding.cbDetailLike.setBackgroundResource(R.drawable.ic_like_check)
+            false -> _binding.cbDetailLike.setBackgroundResource(R.drawable.ic_like_default)
+        }
     }
 
     //like버튼 함수
     private fun cbLikeListener() {
         _binding.cbDetailLike.setOnCheckedChangeListener { it, ischecked ->
             if (it.isChecked) {
-                Log.d(TAG,"d 클릭전 ${productData.like}")
-                cbLikeResult = true
+                Log.d(TAG, "d 클릭전 ${productData.likeAdd}")
+                productData.likeAdd = true
                 productData.like++
-                Log.d(TAG,"d 클릭후 ${productData.like}")
-                Snackbar.make(it, "관심목록에 추가되었습니다.", Snackbar.LENGTH_LONG).show()
-            }else {productData.like--
-            Log.d(TAG,"d 클릭제거 ${productData.like}")}
+                _binding.cbDetailLike.setBackgroundResource(R.drawable.ic_like_check)
+                Log.d(TAG, "d 클릭후 ${productData.likeAdd}")
+                Snackbar.make(it, "관심목록에 추가되었습니다.", Snackbar.LENGTH_SHORT).show()
+            } else {
+                productData.likeAdd = false
+                productData.like--
+                _binding.cbDetailLike.setBackgroundResource(R.drawable.ic_like_default)
+                Log.d(TAG, "d 클릭제거 ${productData.likeAdd}")
+            }
         }
     }
-
 }

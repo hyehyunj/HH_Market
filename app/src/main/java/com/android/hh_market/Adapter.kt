@@ -11,7 +11,7 @@ import com.android.hh_market.databinding.ItemRecyclerviewBinding
 class Adapter(
     private val item: MutableList<ProductInfo>,
     private val itemClickListener: (item: ProductInfo, position: Int) -> Unit,
-    private val itemLongClickListener: (item: ProductInfo, position: Int) -> Boolean
+    private val itemLongClickListener: (position: Int) -> Boolean
 ) : RecyclerView.Adapter<Adapter.Holder>() {
     companion object {
         private const val TAG = "Adapter"
@@ -47,7 +47,7 @@ class Adapter(
                     itemClickListener(item, adapterPosition)
                 }
                 itemRecyclerview.setOnLongClickListener {
-                    itemLongClickListener(item, adapterPosition)
+                    itemLongClickListener(adapterPosition)
                 }
 
 

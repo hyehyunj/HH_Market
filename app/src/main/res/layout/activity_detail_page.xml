@@ -143,7 +143,7 @@
 
     <CheckBox
         android:id="@+id/cb_detail_like"
-        style="@style/cv_detail_like"
+        android:background="@drawable/ic_like_default"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_margin="20dp"

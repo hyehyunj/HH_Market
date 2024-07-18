@@ -4,15 +4,10 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.DialogInterface
 import android.content.Intent
-import android.icu.text.DecimalFormat
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
@@ -39,11 +34,10 @@ class MainPageActivity : AppCompatActivity() {
         val intent = Intent(this, DetailPageActivity::class.java)
         adapter = Adapter(productList, itemClickListener = { item, position ->
             intent.putExtra("DATA", productList[position])
+            intent.putExtra("POSITION", position)
             startActivity(intent)
-        }, itemLongClickListener = { item, position ->
-            adapter.notifyItemRemoved(position)
-            productList.removeAt(position)
-            adapter.notifyItemRangeChanged(position, adapter.itemCount)
+        }, itemLongClickListener = { position ->
+            removeItem(adapter, position)
             return@Adapter true
         })
 
@@ -57,6 +51,10 @@ class MainPageActivity : AppCompatActivity() {
         _binding.toolbar.btnToolbarNotification.setOnClickListener {
             btnNotificationListener()
         }
+
+        //최상단 이동버튼 호출
+        btnFloationgListener()
+
     }
 
 
@@ -68,7 +66,6 @@ class MainPageActivity : AppCompatActivity() {
             addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         }
     }
-
 
     //알림버튼 함수
     private fun btnNotificationListener() {
@@ -122,8 +119,35 @@ class MainPageActivity : AppCompatActivity() {
         onBackPressedDispatcher.addCallback(this, btnBackListener)
     }
 
+    //최상단이동버튼 함수
+    private fun btnFloationgListener() {
+        _binding.mainBtnFloating.setOnClickListener {
+            _binding.mainRecyclerView.smoothScrollToPosition(0)
+        }
+    }
 
+    //롱클릭 이벤트 함수
+    private fun removeItem(adapter: Adapter, position: Int) {
+        val builder = AlertDialog.Builder(this@MainPageActivity)
+        builder.setTitle(getString(R.string.eco_market))
+        builder.setMessage(getString(R.string.ask_remove))
+        builder.setIcon(R.drawable.ic_logo_eco)
+
+        val btnListener = DialogInterface.OnClickListener { dialog, which ->
+            if (which == DialogInterface.BUTTON_POSITIVE) {
+                adapter.notifyItemRemoved(position)
+                productList.removeAt(position)
+                adapter.notifyItemRangeChanged(position, adapter.itemCount)
+            }
+        }
+        builder.setPositiveButton(getString(R.string.yes), btnListener)
+        builder.setNegativeButton(getString(R.string.no), btnListener)
+        builder.show()
+    }
 }
+
+
+
 
 
 
